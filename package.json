@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Jurss/Mern-Stack-Backend#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "express": "^4.17.2",
     "mongoose": "^6.2.1",
     "mongoose-unique-validator": "^3.0.0"
