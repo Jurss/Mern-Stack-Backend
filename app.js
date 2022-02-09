@@ -4,6 +4,9 @@ const mongoose = require('mongoose');
 const stuffRouter = require('./routes/stuff');
 const app = express();
 
+//n4xCNZSRjn2b7x8
+//WvX5LqefVapPGCb
+
 mongoose.connect('mongodb+srv://Jurss:WvX5LqefVapPGCb@cluster0.yjhdl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
         useNewUrlParser: true,
         useUnifiedTopology: true
