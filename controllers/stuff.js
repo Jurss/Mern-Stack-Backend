@@ -18,9 +18,25 @@ exports.modifyThing = (req, res, next) => {
 };
 
 exports.deleteThing = (req, res, next) => {
-    Thing.deleteOne({ _id: req.params.id })
-        .then(() => res.status(200).json('Objet Supprimé!'))
-        .catch(error => res.status(400).json({ error }));
+    Thing.findOne({ _id: req.params.id })
+        .then(
+            (thing) => {
+                if (!thing) {
+                    return res.status(404).json({
+                        error: new Error('Aucun thing trouvé !')
+                    });
+                };
+                //compare si l'UserId de l'objet est le meme que celui de l'utilisateur 
+                if (thing.userId !== req.auth.userId) {
+                    res.status(401).json({
+                        error: new Error('Requete non authorisé !')
+                    });
+                };
+                Thing.deleteOne({ _id: req.params.id })
+                    .then(() => res.status(200).json('Objet Supprimé!'))
+                    .catch(error => res.status(400).json({ error }));
+            }
+        ).catch(error => res.status(400).json({ error: error }));
 };
 
 exports.getOneThing = (req, res, next) => {
